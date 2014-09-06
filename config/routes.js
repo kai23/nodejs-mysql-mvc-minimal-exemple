@@ -31,21 +31,17 @@ module.exports = function(router) {
 	});
 };
 
-// route middleware to make sure a user is logged in
+// permet d'être sûr que l'utilisateur est connecté
 function isLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on
 	if (req.session && req.session.user)
 		return next();
-	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
 
-// route middleware to make sure a user is logged in
+// permet d'être sûr que l'utilisateur n'est PAS logué
 function isNotLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on
 	if (req.session && req.session.user)
 		res.redirect('/user');
 	else 
 		return next();
-	// if they aren't redirect them to the home page
 }

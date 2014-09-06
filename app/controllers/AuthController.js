@@ -2,6 +2,7 @@ var UserModel = require('../models/User');
 
 
 exports.signin = function(req, res) {
+	// GET sur /signin
 	var datas = '';
 	if(req.session && req.session.flash) {
 		datas = req.session.flash;
@@ -12,7 +13,7 @@ exports.signin = function(req, res) {
 
 
 exports.perform_signin = function(req, res) {
-	// ICI faire la connexion
+	// POST sur /signin
 	UserModel.findByEmailAndPassword(req.body, function(err, row) {
 		var message = '';
 		if (err) {
@@ -30,6 +31,7 @@ exports.perform_signin = function(req, res) {
 }
 
 exports.logout = function(req, res) {
+	// GET sur /logout
 	req.session.user = null;
 	res.redirect('/');
 }
